@@ -1,11 +1,13 @@
-import React from 'react';
+import { Container } from "@mui/system";
+import React from "react";
+import Project from "../Project/Project";
 
 const Portfolio = () => {
   return (
-    <section id="portfolio">
-      {/* Listado de proyectos */}
-    </section>
+    <Container sx={{ mt: 5 }}>
+      <Project />
+    </Container>
   );
-}
+};
 
 export default Portfolio;

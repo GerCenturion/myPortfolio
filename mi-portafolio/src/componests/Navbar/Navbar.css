@@ -1,5 +1,6 @@
 .navbar {
     background-color: #333; /* Color de fondo de la barra de navegación */
+    width: 100cqb;
     display: flex;
     justify-content: space-between;
     align-items: center;
