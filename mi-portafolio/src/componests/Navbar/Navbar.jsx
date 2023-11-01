@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Box,
@@ -8,8 +8,16 @@ import {
   ThemeProvider,
   createTheme,
   styled,
+  Button,
+  Drawer,
+  IconButton,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import WorkIcon from "@mui/icons-material/Work";
+import CodeIcon from "@mui/icons-material/Code";
+import DraftsIcon from "@mui/icons-material/Drafts";
+import NavListDrawer from "../NavListDrawer/NavListDrawer";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const theme = createTheme();
 
@@ -38,7 +46,31 @@ const LinkStyled = styled(Link)({
   color: "#fff",
 });
 
+const navLinks = [
+  {
+    title: "Portafolio",
+    path: "#portfolio",
+    icon: <WorkIcon />,
+  },
+  {
+    title: "Skills",
+    path: "#skills",
+    icon: <CodeIcon />,
+  },
+  {
+    title: "Contacto",
+    path: "#contact",
+    icon: <DraftsIcon />,
+  },
+];
+
 function Navbar() {
+  const [open, setOpen] = useState(false);
+
+  const handleCloseDrawer = () => {
+    setOpen(false);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <AppBarStyled position="static">
@@ -51,33 +83,39 @@ function Navbar() {
             Gerson
           </TypographyStyled>
           <ListStyled>
-            <ListItemStyled>
-              <LinkStyled
-                component={RouterLink}
-                to="/portfolio"
-              >
-                Portafolio
-              </LinkStyled>
-            </ListItemStyled>
-            <ListItemStyled>
-              <LinkStyled
-                component={RouterLink}
-                to="/skills"
-              >
-                Habilidades
-              </LinkStyled>
-            </ListItemStyled>
-            <ListItemStyled>
-              <LinkStyled
-                component={RouterLink}
-                to="/contact"
-              >
-                Contacto
-              </LinkStyled>
-            </ListItemStyled>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              {navLinks.map((item) => (
+                <Button
+                  color="inherit"
+                  key={item.title}
+                  component="a"
+                  href={item.path}
+                >
+                  {item.title}
+                </Button>
+              ))}
+            </Box>
           </ListStyled>
+          <IconButton
+            color="inherit"
+            size="large"
+            onClick={() => setOpen(true)}
+            sx={{ display: { xs: "block", sm: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBarStyled>
+      <Drawer
+        open={open}
+        anchor="right"
+        onClose={() => setOpen(false)}
+      >
+        <NavListDrawer
+          navLinks={navLinks}
+          onCloseDrawer={handleCloseDrawer}
+        />
+      </Drawer>
     </ThemeProvider>
   );
 }
