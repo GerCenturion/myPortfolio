@@ -12,7 +12,7 @@ import {
   Drawer,
   IconButton,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, NavLink } from "react-router-dom";
 import WorkIcon from "@mui/icons-material/Work";
 import CodeIcon from "@mui/icons-material/Code";
 import DraftsIcon from "@mui/icons-material/Drafts";
@@ -49,17 +49,17 @@ const LinkStyled = styled(Link)({
 const navLinks = [
   {
     title: "Portafolio",
-    path: "#portfolio",
+    path: "/portfolio",
     icon: <WorkIcon />,
   },
   {
     title: "Skills",
-    path: "#skills",
+    path: "/skills",
     icon: <CodeIcon />,
   },
   {
     title: "Contacto",
-    path: "#contact",
+    path: "/contact",
     icon: <DraftsIcon />,
   },
 ];
@@ -88,8 +88,8 @@ function Navbar() {
                 <Button
                   color="inherit"
                   key={item.title}
-                  component="a"
-                  href={item.path}
+                  component={NavLink}
+                  to={item.path}
                 >
                   {item.title}
                 </Button>
@@ -100,7 +100,7 @@ function Navbar() {
             color="inherit"
             size="large"
             onClick={() => setOpen(true)}
-            sx={{ display: { xs: "block", sm: "none" } }}
+            sx={{ display: { xs: "flex", sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
