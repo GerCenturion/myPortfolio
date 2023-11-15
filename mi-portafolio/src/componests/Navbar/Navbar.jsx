@@ -22,7 +22,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 const theme = createTheme();
 
 const AppBarStyled = styled(AppBar)({
-  backgroundColor: "#333",
+  backgroundColor: "#263238",
 });
 
 const TypographyStyled = styled(Typography)({
@@ -83,7 +83,7 @@ function Navbar() {
             Gerson
           </TypographyStyled>
           <ListStyled>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Box sx={{ display: { xs: "none", md: "block" } }}>
               {navLinks.map((item) => (
                 <Button
                   color="inherit"
@@ -100,7 +100,7 @@ function Navbar() {
             color="inherit"
             size="large"
             onClick={() => setOpen(true)}
-            sx={{ display: { xs: "flex", sm: "none" } }}
+            sx={{ display: { sm: "flex", md: "none" } }}
           >
             <MenuIcon />
           </IconButton>

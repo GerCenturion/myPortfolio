@@ -6,6 +6,7 @@ import {
   Alert,
   Snackbar,
   Box,
+  CircularProgress,
 } from "@mui/material";
 import { styled, css } from "@mui/system";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
@@ -35,6 +36,7 @@ const StyledButton = styled(Button)(
 
 function Contact() {
   const [messageSent, setMessageSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -49,18 +51,42 @@ function Contact() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Agrega la lógica para enviar el mensaje aquí.
-    console.log("Datos del formulario:", formData);
-    // Limpia el formulario después de enviar
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
-    // Muestra el mensaje de éxito
-    setMessageSent(true);
+
+    try {
+      setIsLoading(true);
+
+      const response = await fetch(
+        `http://localhost:3001/sendemail/${formData.email}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setMessageSent(true);
+      } else {
+        console.error("Error al enviar el mensaje:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error de red:", error.message);
+    } finally {
+      setIsLoading(false);
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    }
   };
 
   return (
@@ -99,11 +125,21 @@ function Contact() {
             variant="contained"
             color="primary"
             type="submit"
+            disabled={isLoading}
           >
             Enviar
           </StyledButton>
         </form>
       </FormContainer>
+
+      {isLoading && (
+        <LoaderContainer>
+          <CircularProgress
+            color="primary"
+            size={24}
+          />
+        </LoaderContainer>
+      )}
 
       <Snackbar
         open={messageSent}

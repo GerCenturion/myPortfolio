@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Slider from "react-slick";
 import {
   Typography,
   Link,
@@ -8,101 +9,174 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+import Divider from "@mui/material/Divider";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Skills = () => {
+  const sliderSettings = {
+    infinite: true,
+    speed: 10000,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 100,
+    arrows: false,
+    swipe: true,
+  };
+
+  const programmingLanguages = [
+    {
+      name: "JavaScript",
+      link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
+    },
+    {
+      name: "CSS",
+      link: "https://www.w3schools.com/css/",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg",
+    },
+    {
+      name: "HTML",
+      link: "https://www.w3.org/html/",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg",
+    },
+    {
+      name: "Java",
+      link: "https://www.java.com/",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original-wordmark.svg",
+    },
+    {
+      name: "Python",
+      link: "https://www.python.org/",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
+    },
+    {
+      name: "Kotlin",
+      link: "https://kotlinlang.org/",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/kotlin/kotlin-original-wordmark.svg",
+    },
+    // Agrega más lenguajes según sea necesario
+  ];
+
+  const frameworksAndLibraries = [
+    {
+      name: "React",
+      description: "Biblioteca de JavaScript",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg",
+    },
+    {
+      name: "Node.js",
+      description: "Entorno de ejecución",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg",
+    },
+    {
+      name: "PostgreSQL",
+      description: "Sistema de gestión de bases de datos",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg",
+    },
+    {
+      name: "Express",
+      description: "Marco de aplicación web",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg",
+    },
+    {
+      name: "Redux",
+      description: "Gestión de estado en React",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg",
+    },
+    {
+      name: "MySQL",
+      description: "Sistema de gestión de bases de datos",
+      imgSrc:
+        "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg",
+    },
+  ];
+
+  const [isSliderPaused, setSliderPaused] = useState(false);
+
+  const handleSliderPause = () => {
+    setSliderPaused(true);
+  };
+
+  const handleSliderResume = () => {
+    setSliderPaused(false);
+  };
+
   return (
     <Container>
       <Typography
         variant="h4"
         gutterBottom
-      >
-        Habilidades
-      </Typography>
+      ></Typography>
+
       <Box>
-        <Typography variant="h5">Lenguajes de Programación</Typography>
-        <List>
-          <ListItem>
-            <ListItemText
-              primary="JavaScript"
-              secondary={
-                <Link href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-                  Documentación
-                </Link>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="CSS"
-              secondary="Estilos en la web"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="HTML"
-              secondary="Lenguaje de marcas"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Java"
-              secondary="Lenguaje de programación multipropósito"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Python"
-              secondary="Lenguaje versátil"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Kotlin"
-              secondary="Lenguaje de programación para Android"
-            />
-          </ListItem>
-        </List>
+        <Slider
+          {...sliderSettings}
+          onMouseEnter={handleSliderPause}
+          onMouseLeave={handleSliderResume}
+          paused={isSliderPaused}
+        >
+          {programmingLanguages.map((language, index) => (
+            <ListItem key={index}>
+              <ListItemText
+                primary={language.name}
+                secondary={
+                  <Link
+                    href={language.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  ></Link>
+                }
+              />
+              <img
+                src={language.imgSrc}
+                alt={language.name}
+                style={{ width: 160, height: 160 }}
+              />
+            </ListItem>
+          ))}
+        </Slider>
       </Box>
+
+      <Divider
+        variant="middle"
+        style={{ margin: "20px 0" }}
+      />
+
       <Box>
-        <Typography variant="h5">Frameworks y Bibliotecas</Typography>
-        <List>
-          <ListItem>
-            <ListItemText
-              primary="React"
-              secondary="Biblioteca de JavaScript"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Node.js"
-              secondary="Entorno de ejecución"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="PostgreSQL"
-              secondary="Sistema de gestión de bases de datos"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Express"
-              secondary="Marco de aplicación web"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Redux"
-              secondary="Gestión de estado en React"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="mySQL"
-              secondary="Sistema de gestión de bases de datos"
-            />
-          </ListItem>
-        </List>
+        <Slider
+          {...sliderSettings}
+          onMouseEnter={handleSliderPause}
+          onMouseLeave={handleSliderResume}
+          paused={isSliderPaused}
+        >
+          {frameworksAndLibraries.map((framework, index) => (
+            <ListItem key={index}>
+              <ListItemText
+                primary={framework.name}
+                secondary={framework.description}
+              />
+              <img
+                src={framework.imgSrc}
+                alt={framework.name}
+                style={{ width: 160, height: 160 }}
+              />
+            </ListItem>
+          ))}
+        </Slider>
       </Box>
     </Container>
   );
