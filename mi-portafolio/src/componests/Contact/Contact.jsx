@@ -14,11 +14,7 @@ import { styled, css } from "@mui/system";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 import Slide from "@mui/material/Slide";
 import Loader from "../Loader/Loader.jsx";
-
-console.log(import.meta.env.REACT_APP_URL_SEND_MAIL);
-const apiUrl =
-  import.meta.env.REACT_APP_URL_SEND_MAIL || "http://localhost:3001/sendemail/";
-console.log(apiUrl);
+import { apiUrl } from "../../../Helpers/apiUrl.js";
 
 const FormContainer = styled(Container)(
   css`
@@ -95,7 +91,7 @@ function Contact() {
     try {
       setIsLoading(true);
 
-      const response = await fetch(`${apiUrl}${formData.email}`, {
+      const response = await fetch(`${apiUrl}sendemail/${formData.email}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
