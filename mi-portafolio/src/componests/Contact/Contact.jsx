@@ -6,7 +6,6 @@ import {
   Alert,
   Snackbar,
   Box,
-  CircularProgress,
   Card,
   Typography,
   Link,
@@ -15,6 +14,11 @@ import { styled, css } from "@mui/system";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 import Slide from "@mui/material/Slide";
 import Loader from "../Loader/Loader.jsx";
+
+console.log(import.meta.env.REACT_APP_URL_SEND_MAIL);
+const apiUrl =
+  import.meta.env.REACT_APP_URL_SEND_MAIL || "http://localhost:3001/sendemail/";
+console.log(apiUrl);
 
 const FormContainer = styled(Container)(
   css`
@@ -28,7 +32,7 @@ const FormContainer = styled(Container)(
 const IconsContainer = styled(Box)(
   css`
     position: fixed;
-    bottom: 50px; /* Ajusta este valor según tus necesidades */
+    bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -91,20 +95,17 @@ function Contact() {
     try {
       setIsLoading(true);
 
-      const response = await fetch(
-        `http://localhost:3001/sendemail/${formData.email}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            message: formData.message,
-          }),
-        }
-      );
+      const response = await fetch(`${apiUrl}${formData.email}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
 
       if (response.ok) {
         setMessageSent(true);
@@ -168,7 +169,6 @@ function Contact() {
 
       {isLoading && (
         <MovingCard>
-          {/* Puedes personalizar el contenido de la tarjeta según tus necesidades */}
           <Typography
             variant="h6"
             align="center"
