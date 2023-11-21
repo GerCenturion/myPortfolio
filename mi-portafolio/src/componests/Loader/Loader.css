@@ -1,0 +1,51 @@
+.loader {
+  position: relative;
+  border-style: solid;
+  box-sizing: border-box;
+  border-width: 20px 30px 15px 30px; /* Dimensiones reducidas a la mitad */
+  border-color: #3760C9 #96DDFC #96DDFC #36BBF7;
+  animation: envFloating 1s ease-in infinite alternate;
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  right: 31px; /* Mitad del valor original */
+  top: -20px; /* Mitad del valor original */
+  height: 35px; /* Mitad del valor original */
+  width: 25px; /* Mitad del valor original */
+  background-image:
+    linear-gradient(#fff 22.5px, transparent 0),
+    linear-gradient(#fff 22.5px, transparent 0),
+    linear-gradient(#fff 22.5px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 15px 2px; /* Mitad del valor original */
+  background-position: 0px 6px, 4px 18.5px, 0px 30px; /* Mitad del valor original */
+  animation: envDropping 0.75s linear infinite;
+}
+
+@keyframes envFloating {
+  0% {
+    transform: translate(-1px, -2.5px) /* Mitad del valor original */;
+  }
+  100% {
+    transform: translate(0, 2.5px) /* Mitad del valor original */;
+  }
+}
+
+@keyframes envDropping {
+  0% {
+    background-position: 50px 6px, 57.5px 18.5px, 52.5px 30px; /* Mitad del valor original */
+    opacity: 1;
+  }
+  50% {
+    background-position: 0px 6px, 10px 18.5px, 2.5px 30px; /* Mitad del valor original */
+  }
+  60% {
+    background-position: -15px 6px, 0px 18.5px, -5px 30px; /* Mitad del valor original */
+  }
+  75%, 100% {
+    background-position: -15px 6px, -15px 18.5px, -15px 30px; /* Mitad del valor original */
+    opacity: 0;
+  }
+}

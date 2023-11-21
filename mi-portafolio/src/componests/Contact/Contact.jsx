@@ -7,10 +7,14 @@ import {
   Snackbar,
   Box,
   CircularProgress,
+  Card,
+  Typography,
+  Link,
 } from "@mui/material";
 import { styled, css } from "@mui/system";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 import Slide from "@mui/material/Slide";
+import Loader from "../Loader/Loader.jsx";
 
 const FormContainer = styled(Container)(
   css`
@@ -21,10 +25,40 @@ const FormContainer = styled(Container)(
   `
 );
 
+const IconsContainer = styled(Box)(
+  css`
+    position: fixed;
+    bottom: 50px; /* Ajusta este valor según tus necesidades */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  `
+);
+
 const StyledTextField = styled(TextField)(
   css`
     width: 100%;
     margin-bottom: 16px;
+  `
+);
+
+const MovingCard = styled(Card)(
+  css`
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: moveCard 1.5s infinite alternate;
+
+    @keyframes moveCard {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(16px);
+      }
+    }
   `
 );
 
@@ -133,12 +167,15 @@ function Contact() {
       </FormContainer>
 
       {isLoading && (
-        <LoaderContainer>
-          <CircularProgress
-            color="primary"
-            size={24}
-          />
-        </LoaderContainer>
+        <MovingCard>
+          {/* Puedes personalizar el contenido de la tarjeta según tus necesidades */}
+          <Typography
+            variant="h6"
+            align="center"
+          >
+            <Loader />
+          </Typography>
+        </MovingCard>
       )}
 
       <Snackbar
@@ -165,6 +202,47 @@ function Contact() {
           </Alert>
         </Box>
       </Snackbar>
+      <IconsContainer>
+        <Link
+          href="https://linkedin.com/in/gerson-centurion-63a18b22b"
+          target="_blank"
+          rel="noreferrer"
+          underline="hover"
+        >
+          <img
+            src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"
+            alt="LinkedIn"
+            height="30"
+            width="40"
+          />
+        </Link>
+        <Link
+          href="https://github.com/GerCenturion"
+          target="_blank"
+          rel="noreferrer"
+          underline="hover"
+        >
+          <img
+            src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg"
+            alt="GitHub"
+            height="30"
+            width="40"
+          />
+        </Link>
+        <Link
+          href="https://discord.gg/RYtBAaePgC"
+          target="_blank"
+          rel="noreferrer"
+          underline="hover"
+        >
+          <img
+            src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg"
+            alt="Discord"
+            height="30"
+            width="40"
+          />
+        </Link>
+      </IconsContainer>
     </>
   );
 }

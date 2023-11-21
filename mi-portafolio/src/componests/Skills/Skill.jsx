@@ -69,37 +69,37 @@ const Skills = () => {
   const frameworksAndLibraries = [
     {
       name: "React",
-      description: "Biblioteca de JavaScript",
+      link: "https://es.react.dev/",
       imgSrc:
         "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg",
     },
     {
       name: "Node.js",
-      description: "Entorno de ejecución",
+      link: "https://nodejs.org/en/docs",
       imgSrc:
         "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg",
     },
     {
       name: "PostgreSQL",
-      description: "Sistema de gestión de bases de datos",
+      link: "https://www.postgresql.org/docs/",
       imgSrc:
         "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg",
     },
     {
       name: "Express",
-      description: "Marco de aplicación web",
+      link: "https://expressjs.com/es/",
       imgSrc:
         "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg",
     },
     {
       name: "Redux",
-      description: "Gestión de estado en React",
+      link: "https://es.redux.js.org/",
       imgSrc:
         "https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg",
     },
     {
       name: "MySQL",
-      description: "Sistema de gestión de bases de datos",
+      link: "https://dev.mysql.com/doc/",
       imgSrc:
         "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg",
     },
@@ -167,7 +167,7 @@ const Skills = () => {
             <ListItem key={index}>
               <ListItemText
                 primary={framework.name}
-                secondary={framework.description}
+                // secondary={framework.link}
               />
               <img
                 src={framework.imgSrc}
