@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./componests/Navbar/Navbar";
 import Home from "./componests/Home/Home";
@@ -11,36 +11,34 @@ import Paper from "@mui/material/Paper";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Router>
-        <Paper>
-          <Navbar />
-          <WhatsAppButton />
-          <Routes>
-            <Route
-              path="/"
-              element={<Home />}
-            />
-            <Route
-              path="/portfolio"
-              element={<Portfolio />}
-            />
-            <Route
-              path="/project/:id"
-              element={<ProjectDetail />}
-            />
-            <Route
-              path="/contact"
-              element={<Contact />}
-            />
-            <Route
-              path="/skills"
-              element={<Skills />}
-            />
-          </Routes>
-        </Paper>
-      </Router>
-    </BrowserRouter>
+    <Router>
+      <Paper>
+        <Navbar />
+        <WhatsAppButton />
+        <Routes>
+          <Route
+            path="/"
+            element={<Home />}
+          />
+          <Route
+            path="/portfolio"
+            element={<Portfolio />}
+          />
+          <Route
+            path="/project/:id"
+            element={<ProjectDetail />}
+          />
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+          <Route
+            path="/skills"
+            element={<Skills />}
+          />
+        </Routes>
+      </Paper>
+    </Router>
   );
 }
 
