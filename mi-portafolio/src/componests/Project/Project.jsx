@@ -73,7 +73,7 @@ const Projects = () => {
         
         En el frontend, el diseño uniforme y estilizado se ha logrado, con una Landing Page atractiva y una Home Page que presenta resultados paginados, búsqueda, filtros y ordenamiento. Las páginas Detail y Form muestran detalles y permiten la creación reactiva de nuevos elementos multimedia."
         imageUrl="https://res.cloudinary.com/dk5oluny4/image/upload/v1700482920/ubkfqbbth5ndsobdbwic.jpg"
-        projectUrl="https://frontend-video-game-i96w.vercel.app/"
+        projectUrl="https://gersonpivideogame.vercel.app/"
         codeUrl="https://github.com/GerCenturion/FrontendVideoGame"
       />
       {/* Add more Project components for additional projects */}
