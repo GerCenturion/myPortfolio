@@ -5,7 +5,6 @@ import {
   Link,
   Container,
   Box,
-  List,
   ListItem,
   ListItemText,
 } from "@mui/material";

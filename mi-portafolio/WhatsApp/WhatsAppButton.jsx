@@ -22,6 +22,7 @@ const WhatsAppButton = () => {
         height: "60px",
         minWidth: "unset",
         minHeight: "unset",
+        zindex: 1,
         padding: 0,
       }}
       onClick={openWhatsApp}

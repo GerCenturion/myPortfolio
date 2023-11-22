@@ -15,7 +15,6 @@ const Project = ({ title, description, imageUrl, projectUrl, codeUrl }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "75vh",
       }}
     >
       <Card sx={{ width: "75%", maxWidth: 600, marginBottom: 4 }}>

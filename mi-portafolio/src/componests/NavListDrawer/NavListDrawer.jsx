@@ -6,6 +6,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { Box, width } from "@mui/system";
+import { Link } from "react-router-dom";
 
 export default function NavListDrawer({ navLinks, onCloseDrawer }) {
   return (
@@ -21,8 +22,8 @@ export default function NavListDrawer({ navLinks, onCloseDrawer }) {
               }}
             >
               <ListItemButton
-                component="a"
-                href={item.path}
+                component={Link}
+                to={item.path}
               >
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText>{item.title}</ListItemText>

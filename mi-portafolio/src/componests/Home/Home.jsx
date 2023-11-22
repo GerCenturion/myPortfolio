@@ -8,7 +8,6 @@ const Home = () => {
         sx={{
           padding: 4,
           marginTop: 4,
-          position: "relative",
           margin: "0 auto", // Centra el Paper horizontalmente
           maxWidth: "800px", // Establece el ancho máximo para evitar encimamiento
         }}
